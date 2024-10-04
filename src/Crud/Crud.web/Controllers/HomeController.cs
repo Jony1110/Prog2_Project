@@ -1,3 +1,4 @@
+using Crud.web.Data;
 using Crud.web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -6,11 +7,11 @@ namespace Crud.web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly CrudDbContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(CrudDbContext db)
         {
-            _logger = logger;
+            _db = db;
         }
 
         public IActionResult AnAction()

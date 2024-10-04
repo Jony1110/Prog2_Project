@@ -1,0 +1,29 @@
+﻿@model List<Crud.web.Models.Entities.Customers>
+
+@{
+    ViewData["Title"] = "Customer List";
+    Layout = "_Layout";
+}
+
+<div class="text-center">
+    <table>
+
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Last Name</td>
+        <td>Actions</td>
+    </tr>
+
+    @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Lastname</td>
+                <td></td>
+            </tr>
+        }
+
+</table>
+</div>

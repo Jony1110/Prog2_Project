@@ -7,15 +7,20 @@
     //var infoOnlyActive = ViewBag.CustomerInformation as List<Crud.web.Models.Entities.Customers>;
 }
 
+<p>
+    <a class="btn btn-primary"  asp-action="Create">Create New</a>
+</p>
+
 <div class="text-center">
     <table class="table table-bordered">
-
-        <tr>
-            <td>Id</td>
-            <td>Nombre</td>
-            <td>Apellido</td>
-            <td>Actions</td>
-        </tr>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
 
         <tr>
             <td colspan="4"> All Costumers</td>
@@ -27,7 +32,11 @@
                 <td>@item.Id</td>
                 <td>@item.Nombre</td>
                 <td>@item.Apellido</td>
-                <td></td>
+                <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-info"asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
             </tr>
         }
 
@@ -35,15 +44,27 @@
             <td colspan="4"> Active Costumers</td>
         </tr>
 
-        @foreach (var item in Model.ActiveCustomers)
+        @if (Model.ActiveCustomers != null && Model.ActiveCustomers.Any())
+        {
+            @foreach (var item in Model.ActiveCustomers)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>@item.Apellido</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
         {
             <tr>
-                <td>@item.Id</td>
-                <td>@item.Nombre</td>
-                <td>@item.Apellido</td>
-                <td></td>
+                <td colspan="4"> No Records Four</td>
             </tr>
         }
-
     </table>
 </div>

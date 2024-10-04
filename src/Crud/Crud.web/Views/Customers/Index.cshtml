@@ -1,21 +1,27 @@
-﻿@model List<Crud.web.Models.Entities.Customers>
+﻿@* @model List<Crud.web.Models.Entities.Customers> *@
+@model CustomersViewModel
 
 @{
     ViewData["Title"] = "Customer List";
-    Layout = "_Layout";
+
+    //var infoOnlyActive = ViewBag.CustomerInformation as List<Crud.web.Models.Entities.Customers>;
 }
 
 <div class="text-center">
-    <table>
+    <table class="table table-bordered">
 
-    <tr>
-        <td>Id</td>
-        <td>Name</td>
-        <td>Last Name</td>
-        <td>Actions</td>
-    </tr>
+        <tr>
+            <td>Id</td>
+            <td>Nombre</td>
+            <td>Apellido</td>
+            <td>Actions</td>
+        </tr>
 
-    @foreach(var item in Model)
+        <tr>
+            <td colspan="4"> All Costumers</td>
+        </tr>
+
+        @foreach (var item in Model.AllCustomers)
         {
             <tr>
                 <td>@item.Id</td>
@@ -25,5 +31,19 @@
             </tr>
         }
 
-</table>
+        <tr>
+            <td colspan="4"> Active Costumers</td>
+        </tr>
+
+        @foreach (var item in Model.ActiveCustomers)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Nombre</td>
+                <td>@item.Apellido</td>
+                <td></td>
+            </tr>
+        }
+
+    </table>
 </div>

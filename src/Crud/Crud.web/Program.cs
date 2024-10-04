@@ -1,7 +1,11 @@
-using Crud.web.Data;
+﻿using Crud.web.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<CrudwebContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CrudwebContext") ?? throw new InvalidOperationException("Connection string 'CrudwebContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

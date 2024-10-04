@@ -1,4 +1,5 @@
 ﻿using Crud.web.Data;
+using Crud.web.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Crud.web.Controllers
@@ -15,8 +16,14 @@ namespace Crud.web.Controllers
 
         public ActionResult Index()
         {
-            var info = _db.Customers.ToList();
-            return View(info);
+            var vm = new CustomersViewModel();
+            var AllCustomers = _db.Customers.ToList();
+            var ActiveCustomers = _db.Customers.Where(cust => cust.Activo).ToList();
+            //ViewBag.CustomerInformation = info2;
+
+            vm.ActiveCustomers = ActiveCustomers;
+            vm.AllCustomers = AllCustomers;
+            return View(vm);
         }
     }
 }

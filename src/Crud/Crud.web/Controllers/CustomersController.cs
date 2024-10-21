@@ -6,14 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Crud.web.Controllers
 {
-    public class CustomersController: Controller
+    public class CustomersController : Controller
 
     {
         private readonly CrudDbContext _context;
         public CustomersController(CrudDbContext context)
         {
             _context = context;
-            
+
         }
 
         public ActionResult Index()
@@ -98,22 +98,9 @@ namespace Crud.web.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(customers);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CustomersExists(customers.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+
+                _context.Update(customers);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(customers);

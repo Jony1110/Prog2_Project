@@ -20,7 +20,7 @@ namespace Crud.web.Controllers
         {
             var vm = new CustomersViewModel();
             var AllCustomers = _context.Customers.ToList();
-            var ActiveCustomers = _context.Customers.Where(cust => cust.Activo).ToList();
+            var ActiveCustomers = _context.Customers.Where(cust => cust.IsActive).ToList();
             //ViewBag.CustomerInformation = info2;
 
             vm.ActiveCustomers = ActiveCustomers;

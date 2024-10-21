@@ -16,8 +16,8 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
+                <th>Name</th>
+                <th>Lastname</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -30,8 +30,8 @@
         {
             <tr>
                 <td>@item.Id</td>
-                <td>@item.Nombre</td>
-                <td>@item.Apellido</td>
+                <td>@item.Name</td>
+                <td>@item.Lastname</td>
                 <td>
                     <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Details</a> |
@@ -50,8 +50,8 @@
             {
                 <tr>
                     <td>@item.Id</td>
-                    <td>@item.Nombre</td>
-                    <td>@item.Apellido</td>
+                    <td>@item.Name</td>
+                    <td>@item.Lastname</td>
                     <td>
                         <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                         <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Details</a> |

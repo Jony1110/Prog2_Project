@@ -29,12 +29,8 @@ namespace Crud.web.Controllers
         }
 
         // GET: Customers1/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
             var customers = await _context.Customers
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -53,28 +49,23 @@ namespace Crud.web.Controllers
         }
 
         // POST: Customers1/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Customers customers)
+        public async Task<IActionResult> Create(Customer vm)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(customers);
+                _context.Add(vm);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(customers);
+            return View();
         }
 
         // GET: Customers1/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
             var customers = await _context.Customers.FindAsync(id);
             if (customers == null)
@@ -89,9 +80,9 @@ namespace Crud.web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Customers customers)
+        public async Task<IActionResult> Edit(int id, Customer vm)
         {
-            if (id != customers.Id)
+            if (id != vm.Id)
             {
                 return NotFound();
             }
@@ -99,11 +90,11 @@ namespace Crud.web.Controllers
             if (ModelState.IsValid)
             {
 
-                _context.Update(customers);
+                _context.Update(vm);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(customers);
+            return View(vm);
         }
 
         // GET: Customers1/Delete/5
@@ -125,7 +116,7 @@ namespace Crud.web.Controllers
         }
 
         // POST: Customers1/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName(nameof(Delete))]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

@@ -10,7 +10,7 @@ namespace Crud.web.Data
 
         }
 
-        public DbSet<Customers> Customers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         //public CrudDbContext(IConfiguration configuration)
         //{

@@ -7,7 +7,7 @@ namespace Crud.web.Models.Entities
     //y llamar una tabla de una base de datos
     //cuando su nombre es distinto al que tenemos
 
-    public class Customers
+    public class Customer
     {
         [Key] /*Hace que el programa sepa que el Id es una Primary Key*/
         public int Id { get; set; }

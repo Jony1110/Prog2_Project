@@ -22,6 +22,7 @@ namespace Crud.web.Models.Entities
         public string Phone { get; set; }
         public char Gender { get; set; }
         public bool IsActive { get; set; }
+        public List<Order> Order { get; set; }
 
 
     }

@@ -1,6 +1,7 @@
 ﻿using Crud.web.Data;
 using Crud.web.Models;
 using Crud.web.Models.Entities;
+using Crud.web.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +19,7 @@ namespace Crud.web.Controllers
 
         public ActionResult Index()
         {
-            var vm = new CustomersViewModel();
+            var vm = new CustomerViewModel();
             var AllCustomers = _context.Customers.ToList();
             var ActiveCustomers = _context.Customers.Where(cust => cust.IsActive).ToList();
             //ViewBag.CustomerInformation = info2;
@@ -45,22 +46,33 @@ namespace Crud.web.Controllers
         // GET: Customers1/Create
         public IActionResult Create()
         {
-            return View();
+            var model = new CustomerViewModel();
+            return View(model);
+            //return View();
         }
 
         // POST: Customers1/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Customer vm)
+        public async Task<IActionResult> Create(CustomerViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(vm);
+                var dbCustomer = new Customer();
+
+                dbCustomer.Name = vm.Name;
+                dbCustomer.Lastname = vm.Lastname;
+                dbCustomer.Email = vm.Email;    
+                dbCustomer.Phone = vm.Phone;
+                dbCustomer.Gender = vm.Gender;
+                dbCustomer.IsActive = vm.IsActive;
+
+                _context.Customers.Add(dbCustomer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View();
+            return View(vm);
         }
 
         // GET: Customers1/Edit/5
